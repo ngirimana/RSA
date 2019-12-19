@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>RSA</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1 id="title">Welcome to RSA Crytography System</h1>
+
+    <form action="">
+
+        <label for="">Value  of P</label> <input type="number" name="p" id="p" placeholder="Enter the first prime number ">
+        <label for="">Value  of Q</label> <input type="number" name="q" id="q" placeholder="Enter the second prime number ">
+        <label for="">Message</label> <input type="text" name="msg" id="msg" placeholder="Enter your message  ">
+        <input type="submit" value="Calculate" id="encrypt" class="btn" onclick="mainFun(event)">
+        <input type="submit" value="Reset" id="reset" class="btn" onclick="reset()">
+
+    </form>
+    <h3 id="error"></h3>
+    <div id="output">
+        <div>
+            <h3 id="n"></h3>
+            <h3 id="qn"></h3>
+            <h3 id="e"></h3>
+        </div>
+        <div>
+            <h3 id="d"></h3>
+            <h3 id="encrypted"></h3>
+            <h3 id="decrypted"></h3>
+        </div>
+    </div>
+    <script src="./BigInteger.min.js">
+    </script>
+    <script src="./script.js"></script>
+</body>
+
+</html>
