@@ -84,20 +84,20 @@ const mainFun = (event) => {
         error.innerHTML = "";
         const n = parseInt(p) * parseInt(q);
         const qN = (p - 1) * (q - 1);
-        document.querySelector('#n').innerHTML = `Value of n: ${ n }`;
-        document.querySelector('#qn').innerHTML = `Value of qN: ${ qN }`;
+        document.querySelector('#n').innerHTML = `Value of n: ${n}`;
+        document.querySelector('#qn').innerHTML = `Value of qN: ${qN}`;
         const e = calculateE(qN);
         const d = calculateD(e, qN);
-        document.querySelector('#e').innerHTML = `Value of e: ${ e }`;
-        document.querySelector('#d').innerHTML = `Value of d: ${ d }`;
+        document.querySelector('#e').innerHTML = `Value of e: ${e}`;
+        document.querySelector('#d').innerHTML = `Value of d: ${d}`;
         const encryptedMessage = encrypt(e, n, message.value);
         const fakeMessage = [];
         for (let i = 0; i < encryptedMessage.length; i++) {
-            fakeMessage.push(String.fromCharCode(Math.pow(encryptedMessage[i], 8)));
+            fakeMessage.push(String.fromCharCode(Math.pow(Math.pow(encryptedMessage[i], 2) / 7, 3)));
         }
-        document.querySelector('#encrypted').innerHTML = `Encryted message: ${ fakeMessage.join('') }`;
+        document.querySelector('#encrypted').innerHTML = `Encryted message: ${fakeMessage}`;
         const decryptedMessage = decrypt(d, n, encryptedMessage);
-        document.querySelector('#decrypted').innerHTML = `Decrypted message: ${ decryptedMessage.join('') }`;
+        document.querySelector('#decrypted').innerHTML = `Decrypted message: ${decryptedMessage.join('')}`;
     }
 }
 
