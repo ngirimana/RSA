@@ -71,14 +71,32 @@ const mainFun = (event) => {
     const error = document.querySelector('#error'); //   variable to hold  value of error  from headig 3
     const p = pValue.value; //   value of p
     const q = qValue.value; // value of  q
-
-    /*checking if  p  ,q   and  message input box   are empty */
+    const encryptedkey = document.querySelector('#n')
+    const decryptedKey = document.querySelector('#qn')
+    const e = document.querySelector('#e')
+    const d = document.querySelector('#e')
+    const encryptedvalue = document.querySelector('#encrypted')
+    const decryptedvalue = document.querySelector('#decrypted')
+        /*checking if  p  ,q   and  message input box   are empty */
     if (parseInt(p) === '' || parseInt(q) === '' || message.value === '') {
         error.innerHTML = 'Fill the  form above'; //setting text to error  heading
+        e.innerHTML = '';
+        d.innerHTML = '';
+        decryptedKey.innerHTML = '';
+        encryptedkey.innerHTML = '';
+        decryptedvalue.innerHTML = '';
+        encryptedvalue.innerHTML = ''
+
     }
     //checking  if  q and   p are  prime
     else if (!isPrime(parseInt(p)) || !isPrime(parseInt(q))) {
         error.innerHTML = 'Wrong input provided, Enter a number divisable by 1 and itself'; //setting text to error  heading
+        e.innerHTML = '';
+        d.innerHTML = '';
+        decryptedKey.innerHTML = '';
+        encryptedkey.innerHTML = '';
+        decryptedvalue.innerHTML = '';
+        encryptedvalue.innerHTML = ''
     } else {
         error.innerHTML = ""; //setting  error  heading to empty
         const n = parseInt(p) * parseInt(q); // calculating n
