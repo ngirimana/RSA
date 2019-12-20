@@ -10,7 +10,6 @@ const isPrime = (prime) => {
     return true;
 }
 
-
 //gcd
 const greatestCommonDivisor = (i, t) => {
     while (i > 0) {
@@ -47,60 +46,61 @@ const calculateD = (e, n) => {
 
 //encrypt
 const encrypt = (key, n, plainText) => {
-    let a = 156;
-    let b = 53
-    let c = 299
     const cipherText = []
     for (let i = 0; i < plainText.length; i++) {
-        cipherText.push(Math.pow(plainText.charCodeAt(i), key) % n);
+        cipherText.push(Math.pow(plainText.charCodeAt(i), key) % n); //chaging  every letter into number
     }
-    return cipherText;
+    return cipherText; //return cipher  text
 }
 
 //decrypt
 const decrypt = (key, n, cipherText) => {
     const plainText = [];
     for (let i = 0; i < cipherText.length; i++) {
-        plainText.push(String.fromCharCode(bigInt(cipherText[i]).modPow(key, n)));
+        plainText.push(String.fromCharCode(bigInt(cipherText[i]).modPow(key, n))); //decryptig every number to corresponding letters
     }
     return plainText
 }
 
 //main  function
 const mainFun = (event) => {
+    event.preventDefault(); //preeting auto-refresh
+    const pValue = document.querySelector('#p'); //   variable to hold  value of p from input box
+    const qValue = document.querySelector('#q'); //   variable to hold  value of q from input box
+    const message = document.querySelector('#msg'); //   variable to hold  value of message  from input box
+    const error = document.querySelector('#error'); //   variable to hold  value of error  from headig 3
+    const p = pValue.value; //   value of p
+    const q = qValue.value; // value of  q
 
-    event.preventDefault();
-    const pValue = document.querySelector('#p');
-    const qValue = document.querySelector('#q');
-    const message = document.querySelector('#msg');
-    const error = document.querySelector('#error');
-    const p = pValue.value;
-    const q = qValue.value;
+    /*checking if  p  ,q   and  message input box   are empty */
     if (parseInt(p) === '' || parseInt(q) === '' || message.value === '') {
-        error.innerHTML = 'Fill the  form above';
-    } else if (!isPrime(parseInt(p)) && isPrime(parseInt(q))) {
-        error.innerHTML = 'Wrong input provided, Enter a number divisable by 1 and itself';
+        error.innerHTML = 'Fill the  form above'; //setting text to error  heading
+    }
+    //checking  if  q and   p are  prime
+    else if (!isPrime(parseInt(p)) || !isPrime(parseInt(q))) {
+        error.innerHTML = 'Wrong input provided, Enter a number divisable by 1 and itself'; //setting text to error  heading
     } else {
-        error.innerHTML = "";
-        const n = parseInt(p) * parseInt(q);
-        const qN = (p - 1) * (q - 1);
-        document.querySelector('#n').innerHTML = `Value of n: ${n}`;
-        document.querySelector('#qn').innerHTML = `Value of qN: ${qN}`;
-        const e = calculateE(qN);
-        const d = calculateD(e, qN);
-        document.querySelector('#e').innerHTML = `Value of e: ${e}`;
-        document.querySelector('#d').innerHTML = `Value of d: ${d}`;
-        const encryptedMessage = encrypt(e, n, message.value);
-        const fakeMessage = [];
+        error.innerHTML = ""; //setting  error  heading to empty
+        const n = parseInt(p) * parseInt(q); // calculating n
+        const qN = (p - 1) * (q - 1); //calculating  Q(n)
+        document.querySelector('#n').innerHTML = `Value of n: ${n}`; //displaying  n
+        document.querySelector('#qn').innerHTML = `Value of qN: ${qN}`; // displaying Q(n)
+        const e = calculateE(qN); //calling  e using  Q(n)
+        const d = calculateD(e, qN); // calling    d using  e and Q(n)
+        document.querySelector('#e').innerHTML = `Value of e: ${e}`; //displaying  e
+        document.querySelector('#d').innerHTML = `Value of d: ${d}`; //displaying  d
+        const encryptedMessage = encrypt(e, n, message.value); // calling  encryptmessage function
+        const fakeMessage = []; //  declrinng fakeMesage
         for (let i = 0; i < encryptedMessage.length; i++) {
-            fakeMessage.push(String.fromCharCode(Math.pow(Math.pow(encryptedMessage[i], 2) / 7, 3)));
+            fakeMessage.push(String.fromCharCode(Math.pow(Math.pow(encryptedMessage[i], 2) / 7, 3))); //encrypt encrypted message
         }
-        document.querySelector('#encrypted').innerHTML = `Encryted message: ${fakeMessage}`;
-        const decryptedMessage = decrypt(d, n, encryptedMessage);
-        document.querySelector('#decrypted').innerHTML = `Decrypted message: ${decryptedMessage.join('')}`;
+        document.querySelector('#encrypted').innerHTML = `Encryted message: ${fakeMessage}`; // displaying fakeMessage
+        const decryptedMessage = decrypt(d, n, encryptedMessage); //calling   decrypting  function
+        document.querySelector('#decrypted').innerHTML = `Decrypted message: ${decryptedMessage.join('')}`; //displaying decrypted message
     }
 }
 
+// clear data i  input  field
 const reset = () => {
     const pValue = document.querySelector('#p');
     const qValue = document.querySelector('#q');
