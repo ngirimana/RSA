@@ -2,7 +2,7 @@
         margin: 0;
         padding: 0;
     }
-    
+
     body {
         font-family: sans-serif;
         line-height: 1.7;
@@ -13,22 +13,20 @@
         border: 3px solid grey;
         color: #333;
     }
-    
+
     #error {
         width: 80%;
         margin: 1rem auto;
         padding: 0.7rem;
         font-size: 1.5rem;
     }
-    
+
     #title {
-        font-size: 3rem;
+        font-size: 2rem;
         text-align: center;
     }
-    
-    #p,
-    #q,
-    #msg {
+
+    #p, #q, #msg {
         width: 80%;
         margin: 1rem 8%;
         padding: 0.7rem;
@@ -38,7 +36,7 @@
         border: none;
         font-size: 1.3rem;
     }
-    
+
     .btn {
         margin: 1rem;
         margin-left: 10rem;
@@ -49,13 +47,13 @@
         border: none;
         background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
     }
-    
+
     label {
         margin: 1rem 8%;
         padding: 0.7rem;
         font-size: 1.5rem;
     }
-    
+
     #output {
         display: grid;
         grid-template-columns: 1fr 1fr;
